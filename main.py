@@ -1,3 +1,11 @@
+import os
+import sys
+
+# Playwright কে হেডলেস মোডে চালানোর জন্য ভেরিয়েবল সেট করুন
+os.environ["PLAYWRIGHT_HEADLESS"] = "1"
+os.environ["DISPLAY"] = ":99"  # ডামি ডিসপ্লে সেট করা
+
+# বাকি কোড (যা ইতিমধ্যে আছে) সেটি অপরিবর্তিত থাকবে
 import asyncio
 from playwright.async_api import async_playwright
 from dotenv import load_dotenv
