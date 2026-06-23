@@ -20,10 +20,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install playwright
+          playwright install chromium
+
+      - name: Create .env file
+        run: |
+          echo "YOUTUBE_EMAIL=${{ secrets.YOUTUBE_EMAIL }}" >> .env
+          echo "YOUTUBE_PASSWORD=${{ secrets.YOUTUBE_PASSWORD }}" >> .env
+          echo "PROXY=${{ secrets.PROXY }}" >> .env
 
       - name: Run YouTube View Bot
-        env:
-          YOUTUBE_EMAIL: ${{ secrets.YOUTUBE_EMAIL }}
-          YOUTUBE_PASSWORD: ${{ secrets.YOUTUBE_PASSWORD }}
-          PROXY: ${{ secrets.PROXY }}
         run: python main.py
